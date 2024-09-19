@@ -14,8 +14,8 @@ plugins {
     id("org.springframework.boot") version "3.3.3"
     id("org.jlleitschuh.gradle.ktlint") version "12.1.0"
     id("io.spring.dependency-management") version "1.1.6"
-    id("com.netflix.dgs.codegen") version "6.2.1"
     id("org.graalvm.buildtools.native") version "0.10.2"
+    id("com.netflix.dgs.codegen") version "6.2.1"
 }
 
 allprojects {
@@ -36,10 +36,6 @@ java {
     }
 }
 
-repositories {
-    mavenCentral()
-}
-
 subprojects {
     apply(plugin = "java")
 
@@ -57,6 +53,8 @@ subprojects {
         implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
         implementation("org.jetbrains.kotlin:kotlin-reflect")
         implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
+        implementation("io.arrow-kt:arrow-core:1.2.4")
+        implementation("io.arrow-kt:arrow-fx-coroutines:1.2.4")
 
         developmentOnly("org.springframework.boot:spring-boot-devtools")
 
@@ -71,12 +69,6 @@ kotlin {
     compilerOptions {
         freeCompilerArgs.addAll("-Xjsr305=strict")
     }
-}
-
-tasks.generateJava {
-    schemaPaths.add("$projectDir/src/main/resources/graphql-client")
-    packageName = "org.springkt.auth.codegen"
-    generateClient = true
 }
 
 tasks.withType<Test> {
