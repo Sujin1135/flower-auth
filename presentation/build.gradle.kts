@@ -8,19 +8,11 @@ extra["netflixDgsVersion"] = "9.1.0"
 dependencies {
     implementation(project(":application"))
 
-    implementation("org.springframework.boot:spring-boot-starter-oauth2-client")
-    implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation(libs.bundles.spring.boot.auth)
+    implementation(libs.dgs.graphql)
 
-    testImplementation("org.springframework.security:spring-security-test")
-
-    implementation("com.netflix.graphql.dgs:graphql-dgs-spring-graphql-starter")
-    testImplementation("com.netflix.graphql.dgs:graphql-dgs-spring-graphql-starter-test")
-}
-
-dependencyManagement {
-    imports {
-        mavenBom("com.netflix.graphql.dgs:graphql-dgs-platform-dependencies:${property("netflixDgsVersion")}")
-    }
+    testImplementation(libs.spring.security.test)
+    testImplementation(libs.dgs.graphql.test)
 }
 
 tasks.generateJava {

@@ -9,13 +9,13 @@ tasks.getByName<Jar>("jar") {
 }
 
 plugins {
-    kotlin("jvm") version "1.9.25"
-    kotlin("plugin.spring") version "1.9.25"
-    id("org.springframework.boot") version "3.3.3"
-    id("org.jlleitschuh.gradle.ktlint") version "12.1.0"
-    id("io.spring.dependency-management") version "1.1.6"
-    id("org.graalvm.buildtools.native") version "0.10.2"
-    id("com.netflix.dgs.codegen") version "6.2.1"
+    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.spring.plugin)
+    alias(libs.plugins.spring.boot)
+    alias(libs.plugins.ktlint)
+    alias(libs.plugins.dependency.management)
+    alias(libs.plugins.graalvm.buildtools)
+    alias(libs.plugins.dgs.codegen)
 }
 
 allprojects {
@@ -48,20 +48,19 @@ subprojects {
     apply(plugin = "org.jlleitschuh.gradle.ktlint")
 
     dependencies {
-        implementation("org.springframework.boot:spring-boot-starter-webflux")
-        implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-        implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
-        implementation("org.jetbrains.kotlin:kotlin-reflect")
-        implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
-        implementation("io.arrow-kt:arrow-core:1.2.4")
-        implementation("io.arrow-kt:arrow-fx-coroutines:1.2.4")
+        implementation(rootProject.libs.spring.boot.webflux)
+        implementation(rootProject.libs.jackson.module.kotlin)
+        implementation(rootProject.libs.reactor.kotlin.extensions)
+        implementation(rootProject.libs.kotlin.reflect)
+        implementation(rootProject.libs.kotlinx.coroutines.reactor)
+        implementation(rootProject.libs.bundles.arrow.kt)
 
-        developmentOnly("org.springframework.boot:spring-boot-devtools")
+        developmentOnly(rootProject.libs.spring.boot.devtools)
 
-        testImplementation("org.springframework.boot:spring-boot-starter-test")
-        testImplementation("io.projectreactor:reactor-test")
-        testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
-        testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+        testImplementation(rootProject.libs.spring.boot.starter.test)
+        testImplementation(rootProject.libs.reactor.test)
+        testImplementation(rootProject.libs.junit5)
+        testImplementation(rootProject.libs.junit.platform.launcher)
     }
 }
 

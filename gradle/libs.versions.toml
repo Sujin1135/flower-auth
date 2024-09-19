@@ -1,0 +1,73 @@
+[versions]
+jvm = "1.9.25"
+spring-plugin = "1.9.25"
+spring = "3.3.3"
+ktlint = "12.1.0"
+dependency-management = "1.1.6"
+graalvm-buildtools = "0.10.2"
+dgs-codegen = "6.2.1"
+dgs-graphql = "9.1.0"
+jackson-module-kotlin = "2.17.2"
+reactor-kotlin-extensions = "1.2.3"
+coroutines = "1.8.1"
+arrow-kt = "1.2.4"
+reactor-test = "3.6.9"
+junit5 = "1.9.25"
+junit-platform-launcher = "1.10.3"
+spring-security-test = "6.3.3"
+flyway = "10.10.0"
+postgresql = "42.7.3"
+r2dbc-postgresql = "10.0.5.RELEASE"
+testcontainers = "1.19.8"
+
+[plugins]
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jvm" }
+spring-plugin = { id = "org.jetbrains.kotlin.plugin.spring", version.ref = "spring-plugin" }
+spring-boot = { id = "org.springframework.boot", version.ref = "spring" }
+ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint" }
+dependency-management = { id = "io.spring.dependency-management", version.ref = "dependency-management" }
+graalvm-buildtools = { id = "org.graalvm.buildtools.native", version.ref = "graalvm-buildtools" }
+dgs-codegen = { id = "com.netflix.dgs.codegen", version.ref = "dgs-codegen" }
+
+[libraries]
+spring-boot-webflux = { module = "org.springframework.boot:spring-boot-starter-webflux", version.ref = "spring" }
+jackson-module-kotlin = { module = "com.fasterxml.jackson.module:jackson-module-kotlin", version.ref = "jackson-module-kotlin" }
+reactor-kotlin-extensions = { module = "io.projectreactor.kotlin:reactor-kotlin-extensions", version.ref = "reactor-kotlin-extensions"}
+kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "jvm" }
+kotlinx-coroutines-reactor = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-reactor", version.ref = "coroutines" }
+arrow-core = { module = "io.arrow-kt:arrow-core", version.ref = "arrow-kt" }
+arrow-fx-coroutines = { module = "io.arrow-kt:arrow-fx-coroutines", version.ref = "arrow-kt" }
+spring-boot-devtools = { module = "org.springframework.boot:spring-boot-devtools", version.ref = "spring" }
+spring-boot-starter-test = { module = "org.springframework.boot:spring-boot-starter-test", version.ref = "spring" }
+reactor-test = { module = "io.projectreactor:reactor-test", version.ref = "reactor-test" }
+junit5 = { module = "org.jetbrains.kotlin:kotlin-test-junit5", version.ref = "junit5" }
+junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher", version.ref = "junit-platform-launcher" }
+spring-boot-oauth-client = { module = "org.springframework.boot:spring-boot-starter-oauth2-client", version.ref = "spring" }
+spring-boot-security = { module = "org.springframework.boot:spring-boot-starter-security", version.ref = "spring" }
+dgs-graphql = { module = "com.netflix.graphql.dgs:graphql-dgs-spring-graphql-starter", version.ref = "dgs-graphql" }
+dgs-graphql-test = { module = "com.netflix.graphql.dgs:graphql-dgs-spring-graphql-starter-test", version.ref = "dgs-graphql" }
+spring-security-test = { module = "org.springframework.security:spring-security-test", version.ref = "spring-security-test" }
+r2dbc = { module = "org.springframework.boot:spring-boot-starter-data-r2dbc", version.ref = "spring" }
+redis = { module = "org.springframework.boot:spring-boot-starter-data-redis-reactive", version.ref = "spring" }
+jooq = { module = "org.springframework.boot:spring-boot-starter-jooq", version.ref = "spring" }
+flyway-core = { module = "org.flywaydb:flyway-core", version.ref = "flyway" }
+flyway-postgresql = { module = "org.flywaydb:flyway-database-postgresql", version.ref = "flyway" }
+postgresql = { module = "org.postgresql:postgresql", version.ref = "postgresql" }
+r2dbc-postgresql = { module = "org.postgresql:r2dbc-postgresql", version.ref = "r2dbc-postgresql" }
+spring-boot-testcontainers = { module = "org.springframework.boot:spring-boot-testcontainers", version.ref = "spring" }
+testcontainers-junit-jupiter = { module = "org.testcontainers:junit-jupiter", version.ref = "testcontainers" }
+testcontainers-postgresql = { module = "org.testcontainers:postgresql", version.ref = "testcontainers" }
+testcontainers-r2dbc = { module = "org.testcontainers:r2dbc", version.ref = "testcontainers" }
+
+[bundles]
+arrow-kt = ["arrow-core", "arrow-fx-coroutines"]
+spring-boot-auth = ["spring-boot-oauth-client", "spring-boot-security"]
+spring-infrastructures = ["r2dbc", "redis", "jooq"]
+flyway = ["flyway-core", "flyway-postgresql"]
+postgresql = ["postgresql", "r2dbc-postgresql"]
+testcontainers = [
+    "spring-boot-testcontainers",
+    "testcontainers-junit-jupiter",
+    "testcontainers-postgresql",
+    "testcontainers-r2dbc",
+]
